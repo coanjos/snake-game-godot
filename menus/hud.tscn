@@ -1,0 +1,37 @@
+[gd_scene load_steps=2 format=3 uid="uid://b2riafi1t7tld"]
+
+[ext_resource type="Script" path="res://menus/hud.gd" id="1_m0kmy"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_m0kmy")
+
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(0, 32)
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+alignment = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 20
+
+[node name="Score" type="Label" parent="Panel/HBoxContainer/MarginContainer"]
+layout_mode = 2
+text = "Pontuação: 0"
+
+[node name="MarginContainer2" type="MarginContainer" parent="Panel/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 5
+
+[node name="HighScore" type="Label" parent="Panel/HBoxContainer/MarginContainer2"]
+layout_mode = 2
+text = "Mais Alta: 0"

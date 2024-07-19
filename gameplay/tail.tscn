@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://dpjh4q08sqgv2"]
+
+[ext_resource type="Script" path="res://gameplay/tail.gd" id="1_h427n"]
+[ext_resource type="Texture2D" uid="uid://hs4k245ftgy3" path="res://icon.svg" id="2_1sfee"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5ql7j"]
+
+[node name="Tail" type="Area2D"]
+script = ExtResource("1_h427n")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_5ql7j")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_1sfee")

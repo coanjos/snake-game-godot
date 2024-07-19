@@ -1,0 +1,21 @@
+[gd_scene load_steps=9 format=3 uid="uid://cm4njiw3jsp8f"]
+
+[ext_resource type="Texture2D" uid="uid://1ildcw1dpbad" path="res://gameplay/sprites/apple.png" id="1_ffi2y"]
+[ext_resource type="Script" path="res://gameplay/food.gd" id="1_rlbyh"]
+[ext_resource type="Texture2D" uid="uid://dqbb16aax7snr" path="res://gameplay/sprites/bread.png" id="2_vanu2"]
+[ext_resource type="Texture2D" uid="uid://douou2vxngxrc" path="res://gameplay/sprites/broccoli.png" id="4_c7td2"]
+[ext_resource type="Texture2D" uid="uid://de01ym6vvcxg1" path="res://gameplay/sprites/coconut.png" id="5_dypr6"]
+[ext_resource type="Texture2D" uid="uid://bfjaeio56b2o3" path="res://gameplay/sprites/milk.png" id="6_obmdu"]
+[ext_resource type="Texture2D" uid="uid://d3wepp0oug5aw" path="res://gameplay/sprites/orange.png" id="7_avmjj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jv8bn"]
+
+[node name="Food" type="Area2D" groups=["food"]]
+script = ExtResource("1_rlbyh")
+textures = Array[Texture]([ExtResource("2_vanu2"), ExtResource("1_ffi2y"), ExtResource("4_c7td2"), ExtResource("5_dypr6"), ExtResource("6_obmdu"), ExtResource("7_avmjj")])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_jv8bn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_ffi2y")
