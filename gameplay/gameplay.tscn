@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dspnqhf0eoa0f"]
+[gd_scene load_steps=12 format=3 uid="uid://dspnqhf0eoa0f"]
 
 [ext_resource type="Script" path="res://gameplay/gameplay.gd" id="1_il01l"]
 [ext_resource type="PackedScene" uid="uid://euqnsmta1wv0" path="res://gameplay/head.tscn" id="2_tfxx3"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://ddqo2k62djf37" path="res://gameplay/sprites/grid.png" id="4_gjm25"]
 [ext_resource type="Script" path="res://gameplay/spawner.gd" id="5_87xvg"]
 [ext_resource type="PackedScene" uid="uid://b2riafi1t7tld" path="res://menus/hud.tscn" id="7_5skvx"]
+[ext_resource type="Script" path="res://gameplay/Camera2D.gd" id="8_v4m3o"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nuxa2"]
 texture = ExtResource("4_gjm25")
@@ -55,3 +56,9 @@ bounds = NodePath("../Bounds")
 
 [node name="HUD" parent="." instance=ExtResource("7_5skvx")]
 unique_name_in_owner = true
+
+[node name="Camera" type="Camera2D" parent="."]
+unique_name_in_owner = true
+process_mode = 3
+anchor_mode = 0
+script = ExtResource("8_v4m3o")

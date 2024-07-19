@@ -4,6 +4,7 @@ class_name Gameplay extends Node2D
 @onready var bounds: Bounds = %Bounds as Bounds
 @onready var spawner: Spawner = %Spawner as Spawner
 @onready var hud: HUD = %HUD as HUD
+@onready var camera: Camera = %Camera as Camera
 
 const gameover_scene: PackedScene = preload("res://menus/game_over.tscn")
 var gameover_menu: GameOver
@@ -38,7 +39,7 @@ func _process(_delta: float) -> void:
 	var new_dir: Vector2 = Vector2.ZERO
 	
 	if Input.is_action_pressed("ui_up"):
-		new_dir = Vector2.UP
+		new_dir = Vector2.UP		
 	elif Input.is_action_pressed("ui_right"):
 		new_dir = Vector2.RIGHT
 	elif Input.is_action_pressed("ui_down"):
@@ -77,11 +78,13 @@ func _on_food_eaten() -> void:
 func _on_tail_added(tail: Tail) -> void:
 	snake_parts.push_back(tail)
 	
-func _on_collided_with_tail() -> void:
+func _on_collided_with_tail() -> void:	
 	if not gameover_menu:
 		gameover_menu = gameover_scene.instantiate() as GameOver
-		add_child(gameover_menu)
+		add_child(gameover_menu)		
 		gameover_menu.set_score(score)
+		
+	shake_camera()
 		
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_WM_WINDOW_FOCUS_OUT:
@@ -91,3 +94,6 @@ func pause_game() -> void:
 	if not pause_menu:
 		pause_menu = pausemenu_scene.instantiate() as PauseMenu
 		add_child(pause_menu)
+		
+func shake_camera():
+	camera.apply_shake()
