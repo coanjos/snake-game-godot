@@ -10,5 +10,7 @@ func _ready() -> void:
 # TODO punições de comer coisa errada
 # TODO animação e sprite melhor da cobra ou centopeia (talvez quebrar esta tarefa)
 # TODO introdução do "ajude a cobrinha" com slide e depois "alimentos ruins causam punição"
+# TODO Animar a cobra
+# TODO ANIMATED SPRITE NA CABEÇA
 
 # BUG spawn de comida no corpo

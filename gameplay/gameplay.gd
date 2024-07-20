@@ -17,6 +17,7 @@ var times_since_last_move: float = 0
 var speed: float = 2500.0
 var move_dir: Vector2 = Vector2.RIGHT
 var snake_parts: Array[SnakePart] = []
+var new_dir: Vector2 = Vector2.ZERO
 var score: int:
 	get:
 		return score
@@ -37,20 +38,19 @@ func _ready() -> void:
 	snake_parts.push_back(head)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	var new_dir: Vector2 = Vector2.ZERO
-	
+func _process(_delta: float) -> void:	
 	if Input.is_action_pressed("ui_up"):
-		new_dir = Vector2.UP		
+		new_dir = Vector2.UP	
 	elif Input.is_action_pressed("ui_right"):
-		new_dir = Vector2.RIGHT
+		new_dir = Vector2.RIGHT		
 	elif Input.is_action_pressed("ui_down"):
 		new_dir = Vector2.DOWN
 	elif Input.is_action_pressed("ui_left"):
-		new_dir = Vector2.LEFT
+		new_dir = Vector2.LEFT		
 		
 	if new_dir + move_dir != Vector2.ZERO and new_dir != Vector2.ZERO:
 		move_dir = new_dir
+		head.head_direction(new_dir)		
 		
 	if Input.is_action_just_pressed("ui_cancel"):
 		pause_game()
@@ -68,6 +68,7 @@ func update_snake() -> void:
 	
 	for i in range(1, snake_parts.size(), 1):
 		snake_parts[i].move_to(snake_parts[i-1].last_position)
+		snake_parts[i].current_direction = snake_parts[i-1].last_direction
 	
 func _on_food_eaten() -> void:
 	var snake_last_position: Vector2 = snake_parts[snake_parts.size() - 1].last_position
