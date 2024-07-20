@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://d4e0lflh61a6q"]
+
+[ext_resource type="Script" path="res://gameplay/ultraprocessed_food.gd" id="1_kepn6"]
+[ext_resource type="Texture2D" uid="uid://b0nc5rw5wlwj5" path="res://gameplay/sprites/refri.png" id="2_ljhaa"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ipsop"]
+radius = 32.0
+
+[node name="UltraprocessedFood" type="Area2D" groups=["ultraprocessed_food"]]
+script = ExtResource("1_kepn6")
+textures = Array[Texture]([ExtResource("2_ljhaa")])
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_ljhaa")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ipsop")

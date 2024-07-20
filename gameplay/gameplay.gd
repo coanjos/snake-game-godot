@@ -27,11 +27,13 @@ var score: int:
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	head.food_eaten.connect(_on_food_eaten)
+	head.ultraprocessed_food_eaten.connect(_on_ultraprocessed_food_eaten)
 	head.collided_with_tail.connect(_on_collided_with_tail)
 	spawner.tail_added.connect(_on_tail_added)
 	
 	times_since_last_move = time_between_moves
-	spawner.spawn_food()	
+	spawner.spawn_food()
+	spawner.spawn_ultraprocessed_food()
 	snake_parts.push_back(head)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -75,6 +77,10 @@ func _on_food_eaten() -> void:
 	speed += 200
 	score += 1	
 	
+func _on_ultraprocessed_food_eaten() -> void:
+	camera.apply_shake()
+	spawner.call_deferred("spawn_ultraprocessed_food")
+	
 func _on_tail_added(tail: Tail) -> void:
 	snake_parts.push_back(tail)
 	
@@ -84,7 +90,7 @@ func _on_collided_with_tail() -> void:
 		add_child(gameover_menu)		
 		gameover_menu.set_score(score)
 		
-	shake_camera()
+	camera.apply_shake()
 		
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_WM_WINDOW_FOCUS_OUT:
@@ -94,6 +100,3 @@ func pause_game() -> void:
 	if not pause_menu:
 		pause_menu = pausemenu_scene.instantiate() as PauseMenu
 		add_child(pause_menu)
-		
-func shake_camera():
-	camera.apply_shake()

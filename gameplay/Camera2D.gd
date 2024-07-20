@@ -3,17 +3,17 @@ class_name Camera extends Camera2D
 @export var random_strength: float = 30.0
 @export var shake_fade: float = 5.0
 
-var rng = RandomNumberGenerator.new()
+var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
 var shake_strength: float = 0.0
 
-func _process(delta):		
+func _process(delta: float) -> void:		
 	if shake_strength > 0:
 		shake_strength = lerpf(shake_strength, 0, shake_fade * delta)
 		
 		offset = random_offset()
 
-func apply_shake():
+func apply_shake() -> void:
 	shake_strength = random_strength
 	
 func random_offset() -> Vector2:

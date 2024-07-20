@@ -6,6 +6,7 @@ signal tail_added(tail: Tail)
 
 var food_scene: PackedScene = preload("res://gameplay/food.tscn")
 var tail_scene: PackedScene = preload("res://gameplay/tail.tscn")
+var ultraprocessed_food_scene: PackedScene = preload("res://gameplay/ultraprocessed_food.tscn")
 
 func spawn_food() -> void:
 	var spawn_point: Vector2 = Vector2.ZERO
@@ -20,6 +21,20 @@ func spawn_food() -> void:
 	food.position = spawn_point
 	
 	get_parent().add_child(food)
+	
+func spawn_ultraprocessed_food() -> void:
+	var spawn_point: Vector2 = Vector2.ZERO
+	spawn_point.x = randf_range(bounds.x_min + Global.GRID_SIZE, bounds.x_max - Global.GRID_SIZE)
+	spawn_point.y = randf_range(bounds.y_min + Global.GRID_SIZE, bounds.y_max - Global.GRID_SIZE)
+	
+	spawn_point.x = floor(spawn_point.x / Global.GRID_SIZE) * Global.GRID_SIZE
+	spawn_point.y = floor(spawn_point.y / Global.GRID_SIZE) * Global.GRID_SIZE
+	
+	var ultraprocessed_food: UltraprocessedFood = ultraprocessed_food_scene.instantiate()
+	
+	ultraprocessed_food.position = spawn_point
+	
+	get_parent().add_child(ultraprocessed_food)
 	
 func spawn_tail(pos: Vector2) -> void:
 	var tail: Tail = tail_scene.instantiate() as Tail
